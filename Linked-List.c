@@ -13,10 +13,11 @@ void display(NODE *p)
 {
    while (p != NULL)
    {
-      printf("%d", p->data);
+      printf("%3d",p->data);
       p = p->next;
    }
-   printf("NULL");
+   printf(" ");
+   printf(" NULL");
 }
 int main()
 {
@@ -26,12 +27,14 @@ int main()
    cur = head;
    while (1)
    {
-      printf("Enter any data");
+      printf("Enter any data\t");
       scanf("%d", &cur->data);
       printf("Continue? (Y/N)");
       fflush(stdin);
       scanf("%c", &ch);
+      
       if (toupper(ch) == 'Y')
+
       {
          cur->next = (NODE *)malloc(sizeof(NODE));
          cur = cur->next;
