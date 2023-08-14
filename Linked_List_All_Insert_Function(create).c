@@ -8,7 +8,6 @@ typedef struct node
 	int data;
 	struct node *next;
 } NODE;
-
 // function for counting the number of node
 int count(NODE *p)
 {
@@ -167,8 +166,7 @@ int main()
 			printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 			break;
 		case 6:
-
-			exit(0);
+		    exit(0);
 			break;
 
 		default:
