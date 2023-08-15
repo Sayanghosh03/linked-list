@@ -121,7 +121,8 @@ void insert_proper(NODE **p, int n)
 void create(NODE **p)
 {
 	NODE *cur;
-	cur = *p;
+    cur = (NODE *)malloc(sizeof(NODE));
+    *p = cur;
 	char ch;
 	while (1)
 	{
@@ -146,7 +147,7 @@ int main()
 {
 	NODE *head = NULL;
 	int opt, n, pos;
-	head = (NODE *)malloc(sizeof(NODE));
+	
 	printf("====================================");
 	printf("\nImplementation of Single Linked List\n");
 	printf("====================================\n");
@@ -197,16 +198,17 @@ int main()
 			insert_nth(&head, n, pos);
 			printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 			break;
+			
 		case 6:
 			printf("Enter Any Data You Want to Insert At Proper Position: \t");
 			scanf("%d", &n);
 			insert_proper(&head, n);
 			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
 			break;
+			
 		case 7:
 			exit(0);
-			break;
-
+			
 		default:
 			printf("Data Is Incorrect\n");
 		}

@@ -88,13 +88,38 @@ void insert_nth(NODE **p, int n, int pos)
 		r->next = q;
 	}
 }
+// function for insert at proper position
+void insert_proper(NODE **p, int n)
+{
+	NODE *q, *r, *prev;
+	r = *p;
+	q = (NODE *)malloc(sizeof(NODE));
+	q->data = n;
+	if (*p == NULL || n < r->data)
+	{
+		q->next = *p;
+		*p = q;
+	}
+	else
+	{
+		while (r != NULL)
+		{
+			if (n < r->data)
+				break;
+			prev = r;
+			r = r->next;
+		}
+		q->next = r;
+		prev->next = q;
+	}
+}
 int main()
 {
 	NODE *head = NULL, *cur;
 	char ch;
 	int opt, n, pos;
-	head = (NODE *)malloc(sizeof(NODE));
-	cur = head;
+	cur = (NODE *)malloc(sizeof(NODE));
+	head = cur;
 	printf("====================================");
 	printf("\nImplementation of Single Linked List\n");
 	printf("====================================\n");
@@ -126,7 +151,8 @@ int main()
 		printf("\n 2. Insert at Beginning of the node ");
 		printf("\n 3. Insert at End of the node ");
 		printf("\n 4. Insert at nth position ");
-		printf("\n 5. EXIT \n");
+		printf("\n 5. Insert at proper postion ");
+		printf("\n 6. EXIT \n");
 		scanf("%d", &opt);
 
 		switch (opt)
@@ -158,7 +184,14 @@ int main()
 			insert_nth(&head, n, pos);
 			printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 			break;
-
+		case 5:
+			printf("Enter Any Data You Want to Insert At Proper Position: \t");
+			scanf("%d", &n);
+			insert_proper(&head, n);
+			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
+			break;
+		case 6:
+			exit(0);
 		default:
 			printf("Data Is Incorrect\n");
 		}
