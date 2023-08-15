@@ -22,12 +22,17 @@ int count(NODE *p)
 // function for displaying the node
 void display(NODE *p)
 {
-	while (p != NULL)
+	if (p == NULL)
+		printf("NULL List: ...\n");
+	else
 	{
-		printf("%d ->", p->data);
-		p = p->next;
+		while (p != NULL)
+		{
+			printf("%d ->", p->data);
+			p = p->next;
+		}
+		printf(" NULL ");
 	}
-	printf(" NULL ");
 }
 
 // insert at beginning of a node
@@ -87,10 +92,36 @@ void insert_nth(NODE **p, int n, int pos)
 		r->next = q;
 	}
 }
-void create(NODE *p)
+// function for insert at proper position
+void insert_proper(NODE **p, int n)
+{
+	NODE *q, *r, *prev;
+	r = *p;
+	q = (NODE *)malloc(sizeof(NODE));
+	q->data = n;
+	if (*p == NULL || n < r->data)
+	{
+		q->next = *p;
+		*p = q;
+	}
+	else
+	{
+		while (r != NULL)
+		{
+			if (n < r->data)
+				break;
+			prev = r;
+			r = r->next;
+		}
+		q->next = r;
+		prev->next = q;
+	}
+}
+// function for creating a node
+void create(NODE **p)
 {
 	NODE *cur;
-	cur = p;
+	cur = *p;
 	char ch;
 	while (1)
 	{
@@ -130,14 +161,15 @@ int main()
 		printf("\n 3. Insert at Beginning of the node ");
 		printf("\n 4. Insert at End of the node ");
 		printf("\n 5. Insert at nth position ");
-		printf("\n 6. EXIT \n");
+		printf("\n 6. Insert at proper postion ");
+		printf("\n 7. EXIT \n");
 		scanf("%1d", &opt);
 
 		switch (opt)
 		{
 
 		case 1:
-			create(head);
+			create(&head);
 			break;
 		case 2:
 			display(head);
@@ -166,7 +198,13 @@ int main()
 			printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 			break;
 		case 6:
-		    exit(0);
+			printf("Enter Any Data You Want to Insert At Proper Position: \t");
+			scanf("%d", &n);
+			insert_proper(&head, n);
+			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
+			break;
+		case 7:
+			exit(0);
 			break;
 
 		default:
