@@ -8,6 +8,8 @@ typedef struct node
 	int data;
 	struct node *next;
 } NODE;
+
+
 // function for counting the number of node
 int count(NODE *p)
 {
@@ -19,6 +21,8 @@ int count(NODE *p)
 	}
 	return c;
 }
+
+
 // function for displaying the node
 void display(NODE *p)
 {
@@ -35,6 +39,7 @@ void display(NODE *p)
 	}
 }
 
+
 // insert at beginning of a node
 void insert_beg(NODE **p, int n)
 {
@@ -44,6 +49,8 @@ void insert_beg(NODE **p, int n)
 	q->next = *p;
 	*p = q;
 }
+
+
 
 // insert at end of a node
 void insert_end(NODE **p, int n)
@@ -64,6 +71,9 @@ void insert_end(NODE **p, int n)
 		r->next = q;
 	}
 }
+
+
+
 // function to insert at nth position
 void insert_nth(NODE **p, int n, int pos)
 {
@@ -92,6 +102,9 @@ void insert_nth(NODE **p, int n, int pos)
 		r->next = q;
 	}
 }
+
+
+
 // function for insert at proper position
 void insert_proper(NODE **p, int n)
 {
@@ -117,11 +130,15 @@ void insert_proper(NODE **p, int n)
 		prev->next = q;
 	}
 }
+
+
+
 // function for creating a node
 void create(NODE **p)
 {
 	NODE *cur;
     cur = (NODE *)malloc(sizeof(NODE));
+    //cur = *p;
     *p = cur;
 	char ch;
 	while (1)
@@ -143,10 +160,14 @@ void create(NODE **p)
 		}
 	}
 }
+
+
+
 int main()
 {
 	NODE *head = NULL;
 	int opt, n, pos;
+	//head = (NODE *)malloc(sizeof(NODE));
 	
 	printf("====================================");
 	printf("\nImplementation of Single Linked List\n");

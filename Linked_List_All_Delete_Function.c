@@ -8,6 +8,9 @@ typedef struct node
 int data;
 struct node *next;
 } NODE;
+
+
+
 // function for counting the number of node
 int count(NODE *p)
 {
@@ -19,6 +22,9 @@ while (p != NULL)
 }
 return c;
 }
+
+
+
 // function for displaying the node
 void display(NODE *p)
 {
@@ -28,30 +34,10 @@ while (p != NULL)
 	p = p->next;
 }
 printf(" NULL ");
-}void create(NODE *p)
-{
-NODE *cur;
-cur = p;
-char ch;
-while (1)
-{
-	printf("Enter any data:... ");
-	scanf("%d", &cur->data);
-	printf("continue?(Y/N)...");
-	fflush(stdin);
-	scanf("%c", &ch);
-	if (toupper(ch) == 'Y')
-	{
-		cur->next = (NODE *)malloc(sizeof(NODE));
-		cur = cur->next;
-	}
-	else
-	{
-		cur->next = NULL;
-		break;
-	}
 }
-}
+
+
+
 // function for delete first node 
 void delete_first(NODE **p){
 NODE*r = *p;
@@ -65,6 +51,8 @@ else {
 	
 }
 }
+
+
 // function for delte last node 
 void delete_last(NODE **p){
 NODE *r = *p;
@@ -84,6 +72,9 @@ else{
 		r->next = NULL;
 }
 }
+
+
+
 // function for delete nth node
 void delete_nth(NODE **p, int pos){
 	int i;
@@ -107,6 +98,10 @@ void delete_nth(NODE **p, int pos){
 		
 	}	
 }
+
+
+
+
 //function for reverse physically
 void rev_physically(NODE **p){
 	NODE *prev, *cur, *nxt;
@@ -123,6 +118,10 @@ void rev_physically(NODE **p){
 	*p = cur;
 	
 }
+
+
+
+
 //function for display the value in reverse
 void rev_display(NODE *p){
 //	int x;
@@ -134,11 +133,41 @@ void rev_display(NODE *p){
 	}
 }
 
+
+
+//function for creating a node 
+void create(NODE **p)
+{
+NODE *cur;
+cur = (NODE *)malloc(sizeof(NODE));
+//cur = *p;
+*p = cur;
+char ch;
+while (1)
+{
+	printf("Enter any data:... ");
+	scanf("%d", &cur->data);
+	printf("continue?(Y/N)...");
+	fflush(stdin);
+	scanf("%c", &ch);
+	if (toupper(ch) == 'Y')
+	{
+		cur->next = (NODE *)malloc(sizeof(NODE));
+		cur = cur->next;
+	}
+	else
+	{
+		cur->next = NULL;
+		break;
+	}
+}
+}
+
 int main()
 {
 NODE *head = NULL;
 int opt, n, pos;
-head = (NODE *)malloc(sizeof(NODE));
+//head = (NODE *)malloc(sizeof(NODE));
 printf("====================================");
 printf("\nImplementation of Single Linked List\n");
 printf("====================================\n");
@@ -160,7 +189,7 @@ while (1)
 	{
 
 	case 1:
-		create(head);
+		create(&head);
 		break;
 	case 2:
 		display(head);
