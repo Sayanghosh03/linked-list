@@ -48,6 +48,7 @@ if(*p == NULL){
 else {
 	*p = (*p)->next;
 	free(r);
+	printf("First Node Deleted Sucessfully\n");
 	
 }
 }
@@ -63,6 +64,7 @@ if(*p == NULL){
 if(r->next == NULL){
 	*p == NULL;
 	free(r);
+	printf("First Node Deleted Sucessfully\n");
 }
 else{
 	while(r->next->next != NULL){
@@ -70,6 +72,7 @@ else{
 	}
 		free(r->next);
 		r->next = NULL;
+	printf("First Node Deleted Sucessfully\n");
 }
 }
 
@@ -87,6 +90,7 @@ void delete_nth(NODE **p, int pos){
 	else if(pos == 1){
 		*p = NULL;
 		free(r);
+	printf("Your Data Has Been Deleted Sucessfully at position %4d\n",pos);
 	}
 	else{
 		for(i=1;i<=pos-1;i++){
@@ -95,6 +99,7 @@ void delete_nth(NODE **p, int pos){
 			q= r->next;
 			r->next = r->next->next;
 			free(q);
+			printf("Your Data Has Been Deleted Sucessfully at position %4d\n",pos);
 		
 	}	
 }
@@ -196,21 +201,18 @@ while (1)
 		break;
     case 3:
     	delete_first(&head);
-    	printf("First Node Deleted Sucessfully\n");
     	break;
     case 4:
     	delete_last(&head);
-    	printf("Last Node Deleted Sucessfully\n");
     	break;
     case 5:
     	printf("Enter the Postion of the Node You Want to Delete\t");
     	scanf("%d",&pos);
     	delete_nth(&head,pos);
-    	printf("Your Data Has Been Deleted Sucessfully at position %4d\n",pos);
     	break;
     	case 6:
     		exit(0);
-    		break;
+    		
     default: printf("Please Choose Correct Option\n");
 }
 }

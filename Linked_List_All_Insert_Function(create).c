@@ -48,6 +48,7 @@ void insert_beg(NODE **p, int n)
 	q->data = n;
 	q->next = *p;
 	*p = q;
+	printf("Your Data Has Been Inserted Sucessfully At The Beginning...\n");
 }
 
 
@@ -59,8 +60,10 @@ void insert_end(NODE **p, int n)
 	q = (NODE *)malloc(sizeof(NODE));
 	q->data = n;
 	q->next = NULL;
-	if (*p == NULL)
+	if (*p == NULL){
 		*p = q;
+		printf("Your Data Has Been Inserted Sucessfully At The END...\n");
+	}
 	else
 	{
 		r = *p;
@@ -69,6 +72,7 @@ void insert_end(NODE **p, int n)
 			r = r->next;
 		}
 		r->next = q;
+		printf("Your Data Has Been Inserted Sucessfully At The END...\n");
 	}
 }
 
@@ -90,6 +94,7 @@ void insert_nth(NODE **p, int n, int pos)
 	{
 		q->next = *p;
 		*p = q;
+		printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 	}
 	else
 	{
@@ -100,6 +105,7 @@ void insert_nth(NODE **p, int n, int pos)
 		}
 		q->next = r->next;
 		r->next = q;
+		printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 	}
 }
 
@@ -201,14 +207,12 @@ int main()
 			printf("Enter The Data You Want To Insert:\t");
 			scanf("%d", &n);
 			insert_beg(&head, n);
-			printf("Your Data Has Been Inserted Sucessfully At The Beginning...\n");
 			break;
 
 		case 4:
 			printf("Enter The Data You Want To Insert At END:\t");
 			scanf("%d", &n);
 			insert_end(&head, n);
-			printf("Your Data Has Been Inserted Sucessfully At The END...\n");
 			break;
 
 		case 5:
@@ -217,13 +221,12 @@ int main()
 			printf("Enter Position You Want to Insert: \t");
 			scanf("%d", &pos);
 			insert_nth(&head, n, pos);
-			printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 			break;
 			
 		case 6:
 			printf("Enter Any Data You Want to Insert At Proper Position: \t");
 			scanf("%d", &n);
-			insert_proper(&head, n);
+			insert_proper(&head, n); 
 			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
 			break;
 			
