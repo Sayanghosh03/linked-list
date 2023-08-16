@@ -28,6 +28,8 @@ return c;
 // function for displaying the node
 void display(NODE *p)
 {
+	if(p==NULL)
+	printf("NULL List: Display not possible:");
 while (p != NULL)
 {
 	printf("%d ->", p->data);
@@ -144,9 +146,9 @@ void rev_display(NODE *p){
 void create(NODE **p)
 {
 NODE *cur;
-cur = (NODE *)malloc(sizeof(NODE));
-//cur = *p;
-*p = cur;
+//cur = (NODE *)malloc(sizeof(NODE));
+cur = *p;
+//*p = cur;
 char ch;
 while (1)
 {
@@ -168,11 +170,12 @@ while (1)
 }
 }
 
+
 int main()
 {
 NODE *head = NULL;
 int opt, n, pos;
-//head = (NODE *)malloc(sizeof(NODE));
+head = (NODE *)malloc(sizeof(NODE));
 printf("====================================");
 printf("\nImplementation of Single Linked List\n");
 printf("====================================\n");
@@ -189,6 +192,7 @@ while (1)
 	printf("\n 5. Delete Nth Position of a Node ");
 	printf("\n 6. EXIT \n");
 	scanf("%1d", &opt);
+	
 
 	switch (opt)
 	{
@@ -197,7 +201,8 @@ while (1)
 		create(&head);
 		break;
 	case 2:
-		display(head);
+		printf("%d",head);
+//		display(head);
 		break;
     case 3:
     	delete_first(&head);
