@@ -64,7 +64,7 @@ if(*p == NULL){
 if(r->next == NULL){
 	*p == NULL;
 	free(r);
-	printf("First Node Deleted Sucessfully\n");
+	printf("Last Node Deleted Sucessfully\n");
 }
 else{
 	while(r->next->next != NULL){
@@ -72,7 +72,7 @@ else{
 	}
 		free(r->next);
 		r->next = NULL;
-	printf("First Node Deleted Sucessfully\n");
+	printf("Last Node Deleted Sucessfully\n");
 }
 }
 
@@ -144,9 +144,8 @@ void rev_display(NODE *p){
 void create(NODE **p)
 {
 NODE *cur;
-cur = (NODE *)malloc(sizeof(NODE));
-//cur = *p;
-*p = cur;
+*p = (NODE *)malloc(sizeof(NODE));
+cur = *p;
 char ch;
 while (1)
 {
@@ -172,11 +171,11 @@ int main()
 {
 NODE *head = NULL;
 int opt, n, pos;
-//head = (NODE *)malloc(sizeof(NODE));
 printf("====================================");
 printf("\nImplementation of Single Linked List\n");
 printf("====================================\n");
-printf("\n..........Processing ..........\n");
+printf("\n");
+//printf("\n..........Processing ..........\n");
 while (1)
 {
 	printf("\n============================");
@@ -188,7 +187,9 @@ while (1)
 	printf("\n 4. Delete Last node ");
 	printf("\n 5. Delete Nth Position of a Node ");
 	printf("\n 6. EXIT \n");
-	scanf("%1d", &opt);
+	printf("\n Choose Option \t ");
+	scanf("%d", &opt);
+	printf("\n");
 
 	switch (opt)
 	{
