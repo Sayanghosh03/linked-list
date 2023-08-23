@@ -130,10 +130,9 @@ void rev_display(NODE *p)
 	//	int x;
 	if (p != NULL)
 	{
-		//		x = p->data;
+		x = p->data;
 		rev_display(p->next);
-		//		printf("%d",x);
-		printf("%d", p->data);
+		printf("%d",x);
 	}
 }
 

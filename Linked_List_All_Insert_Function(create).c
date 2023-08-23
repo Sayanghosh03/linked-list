@@ -51,8 +51,6 @@ void insert_beg(NODE **p, int n)
 	printf("Your Data Has Been Inserted Sucessfully At The Beginning...\n");
 }
 
-
-
 // insert at end of a node
 void insert_end(NODE **p, int n)
 {
@@ -76,14 +74,12 @@ void insert_end(NODE **p, int n)
 	}
 }
 
-
-
 // function to insert at nth position
 void insert_nth(NODE **p, int n, int pos)
 {
 	NODE *q, *r;
 	int i;
-	if (pos > count(*p) + 1)
+	if (pos > (count(*p) + 1))
 	{
 		puts("Invalid Position");
 		return;
@@ -110,7 +106,7 @@ void insert_nth(NODE **p, int n, int pos)
 }
 
 
-
+/*
 // function for insert at proper position
 void insert_proper(NODE **p, int n)
 {
@@ -135,8 +131,94 @@ void insert_proper(NODE **p, int n)
 		q->next = r;
 		prev->next = q;
 	}
+} */
+
+
+// function for display the value in reverse
+void rev_display(NODE *p)
+{
+	int x;
+	if (p != NULL)
+	{
+		x = p->data;
+		rev_display(p->next);
+		printf("%d",x);
+	}
 }
 
+// function for delete first node
+void delete_first(NODE **p)
+{
+	NODE *r = *p;
+	if (*p == NULL)
+	{
+		printf("NULL List: Deletation not possible...\n");
+		return;
+	}
+	else
+	{
+		*p = (*p)->next;
+		free(r);
+		printf("First Node Deleted Sucessfully\n");
+	}
+}
+
+// function for delte last node
+void delete_last(NODE **p)
+{
+	NODE *r = *p;
+	if (*p == NULL)
+	{
+		printf("NULL List: Deletation not possible...\n");
+		return;
+	}
+	if (r->next == NULL)
+	{
+		*p == NULL;
+		free(r);
+		printf("Last Node Deleted Sucessfully\n");
+	}
+	else
+	{
+		while (r->next->next != NULL)
+		{
+			r = r->next;
+		}
+		free(r->next);
+		r->next = NULL;
+		printf("Last Node Deleted Sucessfully\n");
+	}
+}
+
+// function for delete nth node
+void delete_nth(NODE **p, int pos)
+{
+	int i;
+	NODE *r, *q;
+	r = *p;
+	if (pos > count(*p) + 1)
+	{
+		printf("Invalid position");
+		return;
+	}
+	else if (pos == 1)
+	{
+		*p = NULL;
+		free(r);
+		printf("Your Data Has Been Deleted Sucessfully at position %4d\n", pos);
+	}
+	else
+	{
+		for (i = 0; i < pos - 2; i++)
+		{
+			r = r->next;
+		}
+		q = r->next;
+		r->next = r->next->next;
+		free(q);
+		printf("Your Data Has Been Deleted Sucessfully at position %4d\n", pos);
+	}
+}
 
 
 // function for creating a node
@@ -144,7 +226,6 @@ void create(NODE **p)
 {
 	NODE *cur;
     cur = (NODE *)malloc(sizeof(NODE));
-    //cur = *p;
     *p = cur;
 	char ch;
 	while (1)
@@ -173,8 +254,6 @@ int main()
 {
 	NODE *head = NULL;
 	int opt, n, pos;
-	//head = (NODE *)malloc(sizeof(NODE));
-	
 	printf("====================================");
 	printf("\nImplementation of Single Linked List\n");
 	printf("====================================\n");
@@ -189,9 +268,13 @@ int main()
 		printf("\n 3. Insert at Beginning of the node ");
 		printf("\n 4. Insert at End of the node ");
 		printf("\n 5. Insert at nth position ");
-		printf("\n 6. Insert at proper postion ");
-		printf("\n 7. EXIT \n");
-		scanf("%1d", &opt);
+//		printf("\n 6. Insert at proper postion ");
+        printf("\n 6. Display the value in reverse ");
+        printf("\n 7. Delete first Node ");
+        printf("\n 8. Delete last Node ");
+        printf("\n 9. Delete Nth Node ");
+		printf("\n 10. EXIT \n");
+		scanf("%d",&opt);
 
 		switch (opt)
 		{
@@ -223,16 +306,34 @@ int main()
 			insert_nth(&head, n, pos);
 			break;
 			
-		case 6:
+		/*case 6:
 			printf("Enter Any Data You Want to Insert At Proper Position: \t");
 			scanf("%d", &n);
 			insert_proper(&head, n); 
 			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
+			break;*/
+		case 6:
+			rev_display(head);
+			break;
+		
+		case 7:
+			delete_first(&head);
 			break;
 			
-		case 7:
-			exit(0);
-			
+		case 8:
+			delete_last(&head);
+			break;
+		
+		case 9:
+			printf("Enter Position You Want to Delete: \t");
+			scanf("%d", &pos);
+			delete_nth(&head,pos);
+			break;
+		case 10:
+			printf("Exiting.....");
+//			return 0;
+			exit(1);
+			break;
 		default:
 			printf("Data Is Incorrect\n");
 		}
