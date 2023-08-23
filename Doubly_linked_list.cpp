@@ -43,7 +43,6 @@ int main()
 {
 	NODE *head = NULL;
 	int opt, n, pos;
-	//head = (NODE *)malloc(sizeof(NODE));
 	
 	printf("====================================");
 	printf("\nImplementation of Single Linked List\n");

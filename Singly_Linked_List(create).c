@@ -75,12 +75,12 @@ void insert_end(NODE **p, int n)
 }
 
 // function to insert at nth position
-void insert_nth(NODE **p, int n, int pos)
+void insert_nth(NODE **p, int pos, int n)
 {
 	NODE *q, *r;
 	int i;
-	if (pos > (count(*p) + 1))
-	{
+	if (pos > count(*p) + 1)
+	{ 
 		puts("Invalid Position");
 		return;
 	}
@@ -104,35 +104,6 @@ void insert_nth(NODE **p, int n, int pos)
 		printf("Your Data Has Been Inserted Sucessfully At Position%4d\n", pos);
 	}
 }
-
-
-/*
-// function for insert at proper position
-void insert_proper(NODE **p, int n)
-{
-	NODE *q, *r, *prev;
-	r = *p;
-	q = (NODE *)malloc(sizeof(NODE));
-	q->data = n;
-	if (*p == NULL || n < r->data)
-	{
-		q->next = *p;
-		*p = q;
-	}
-	else
-	{
-		while (r != NULL)
-		{
-			if (n < r->data)
-				break;
-			prev = r;
-			r = r->next;
-		}
-		q->next = r;
-		prev->next = q;
-	}
-} */
-
 
 // function for display the value in reverse
 void rev_display(NODE *p)
@@ -268,7 +239,6 @@ int main()
 		printf("\n 3. Insert at Beginning of the node ");
 		printf("\n 4. Insert at End of the node ");
 		printf("\n 5. Insert at nth position ");
-//		printf("\n 6. Insert at proper postion ");
         printf("\n 6. Display the value in reverse ");
         printf("\n 7. Delete first Node ");
         printf("\n 8. Delete last Node ");
@@ -299,19 +269,13 @@ int main()
 			break;
 
 		case 5:
-			printf("Enter The Data You Want to Insert: \t");
-			scanf("%d", &n);
-			printf("Enter Position You Want to Insert: \t");
+			printf("Enter The Position You Want to Insert: \t");
 			scanf("%d", &pos);
-			insert_nth(&head, n, pos);
-			break;
-			
-		/*case 6:
-			printf("Enter Any Data You Want to Insert At Proper Position: \t");
+			printf("Enter Data You Want to Insert: \t");
 			scanf("%d", &n);
-			insert_proper(&head, n); 
-			printf("Your Data Has Been Inserted Sucessfully At Its Postion: \t");
-			break;*/
+			insert_nth(&head,pos,n);
+			break;
+
 		case 6:
 			rev_display(head);
 			break;
@@ -331,9 +295,7 @@ int main()
 			break;
 		case 10:
 			printf("Exiting.....");
-//			return 0;
 			exit(1);
-			break;
 		default:
 			printf("Data Is Incorrect\n");
 		}
